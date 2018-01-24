@@ -22,7 +22,7 @@
 #************************************************************************
 
 import FreeCAD
-import FreeCADGui
+import FreeCADGui as Gui
 import sys
 import TransportationToolbar
 
@@ -32,20 +32,22 @@ class TransportationWorkbench (Workbench):
     ToolTip = "A description of my workbench"
     Icon = '''icons/roadnrail_16.xpm'''
 
+    def __init__(self):
+        self.policies_ist = ["Edit..."]
+        self.general_fn_list = ["NewAlignment"]
+        self.alignment_fn_list = ["Tangent", "Curve1", "Curve2", "Curve3"
+                                  "CurveSpiral"]
+
     def Initialize(self):
 
         import NewAlignment, Tangent, Curve1, Curve2, Curve3, CurveSpiral
 
-        Gui.activateWorkbench ("SketcherWorkbench")
+        Gui.activateWorkbench("SketcherWorkbench")
 
-        self.transpolist = ["NewAlignment", "Tangent", "Curve1", "Curve2", 
-                            "Curve3", "CurveSpiral", "Sketcher_NewSketch"]
-
-        self.policieslist = ["Edit..."]
-
-        self.appendToolbar("Transportation",self.transpolist)
-        self.appendMenu("Transportation",self.transpolist)
-        self.appendMenu(["Transportation","Policies"],self.policieslist)
+        self.appendToolbar("Transportation", self.general_fn_list)
+        self.appendToolbar("Transportation alignment", self.alignment_fn_list)
+        self.appendMenu("Transportation", self.general_fn_list)
+        #self.appendMenu(["Transportation", "Policies"], self.policies_list)
 
     def Activated(self):
         "This function is executed when the workbench is activated"
@@ -62,5 +64,5 @@ class TransportationWorkbench (Workbench):
     def GetClassName(self): 
         # this function is mandatory if this is a full python workbench
         return "Gui::PythonWorkbench"
-       
+
 Gui.addWorkbench(TransportationWorkbench())

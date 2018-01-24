@@ -14,7 +14,7 @@ class Curve1():
         result = GeometryUtilities._getSelection()
         print result
         return
-
+    
     def IsActive(self):
         return FreeCADGui.ActiveDocument <> None
 
