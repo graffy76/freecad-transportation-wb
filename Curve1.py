@@ -8,7 +8,8 @@ class Curve1():
         return {'Pixmap'  : 'My_Command_Icon', # the name of a svg file available in the resources
                 'Accel' : "Shift+1", # a default shortcut (optional)
                 'MenuText': "One-Center Curve",
-                'ToolTip' : "Add a one-center curve"}
+                'ToolTip' : "Add a one-center curve",
+                'CmdType': "ForEdit"}
 
     def Activated(self):
         result = GeometryUtilities._getSelection()
